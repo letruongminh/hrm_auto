@@ -1,0 +1,287 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "admin-/-user-management;verify-that-user-is-redirected-to-dashboard-when-logging-in-successfully-with-correct-username-and-password",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "name": "Verify that user is redirected to Dashboard when logging in successfully with correct username and password",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 565158700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am on the landing page",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6442661999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I fill in the login form with username \"Admin\" and password \"admin123\"",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 90832000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "I hit the login button",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2150641499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "I access the \"Admin\" menu",
+            "match": {
+              "location": "tests\\features\\steps\\admin-search-steps.ts:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1832301099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I search for the user with \"Admin\"",
+            "match": {
+              "location": "tests\\features\\steps\\admin-search-steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 66040100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the user in the search results",
+            "match": {
+              "location": "tests\\features\\steps\\admin-search-steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11603300
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 402096499
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "admin-/-user-management",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Admin / User Management",
+    "tags": [],
+    "uri": "tests\\features\\admin-search.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "login-functionality;verify-that-user-is-redirected-to-dashboard-when-logging-in-successfully-with-correct-username-and-password",
+        "keyword": "Scenario Outline",
+        "line": 11,
+        "name": "Verify that user is redirected to Dashboard when logging in successfully with correct username and password",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 540597900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am on the landing page",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5485509900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I fill in the login form with username \"Admin\" and password \"admin123\"",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 58972499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "I hit the login button",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2018065599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should be logged in successfully",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27132999
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 441564399
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-functionality;verify-that-user-is-redirected-to-dashboard-when-logging-in-successfully-with-correct-username-and-password",
+        "keyword": "Scenario Outline",
+        "line": 12,
+        "name": "Verify that user is redirected to Dashboard when logging in successfully with correct username and password",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 495005300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am on the landing page",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5387737700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I fill in the login form with username \"admin\" and password \"admin123\"",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 77858800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "I hit the login button",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2092320899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should be logged in successfully",
+            "match": {
+              "location": "tests\\features\\steps\\login-steps.ts:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16376100
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 358976800
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login-functionality",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login functionality",
+    "tags": [],
+    "uri": "tests\\features\\login.feature"
+  }
+]
