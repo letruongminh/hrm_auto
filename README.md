@@ -1,7 +1,7 @@
 # Playwright + Cucumber TypeScript Test Automation Framework
 
 ## Overview
-This framework combines Playwright and Cucumber with TypeScript for scalable, maintainable, and cross-browser end-to-end testing. It is designed for CI/CD environments (GitHub Actions, GitLab), robust reporting, and best practices in modular test automation.
+This framework combines Playwright and Cucumber with TypeScript for scalable, maintainable, and cross-browser end-to-end testing. It is designed for CI/CD environments (GitHub Actions), robust reporting, and best practices in modular test automation.
 
 ---
 
@@ -12,17 +12,14 @@ This framework combines Playwright and Cucumber with TypeScript for scalable, ma
 │   ├── custom-world.ts        # Custom Cucumber World for Playwright context/page
 │   └── hooks.ts               # Cucumber hooks for setup, teardown, reporting
 ├── tests/
-│   ├── features/              # Feature files, step definitions, and page objects
-│   │   ├── login/             # Example feature area
-│   │   │   ├── login.feature
-│   │   │   ├── pages/
-│   │   │   │   └── landing-page.ts
-│   │   │   └── steps/
-│   │   │       └── login-steps.ts
-│   │   └── search/            # (Other features)
-│   └── example.spec.ts        # Playwright test example (non-Cucumber)
-├── tests-examples/            # Additional demo scripts
-│   └── demo-todo-app.spec.ts
+│   └── features/              # Feature files, step definitions, and page objects
+│       ├── login/             # Login feature
+│       │   ├── login.feature
+│       │   ├── pages/
+│       │   │   └── landing-page.ts
+│       │   └── steps/
+│       │       └── login-steps.ts
+│       └── search/            # (Other features)
 ├── playwright.config.ts       # Playwright config (cross-browser, video, etc.)
 ├── cucumber.js                # Cucumber config
 ├── .github/workflows/         # CI/CD workflows (GitHub Actions)
@@ -30,15 +27,15 @@ This framework combines Playwright and Cucumber with TypeScript for scalable, ma
 ├── reports/                   # Test artifacts (screenshots, videos, reports)
 │   ├── screenshots/
 │   └── videos/
-└── README.md                  # This file
+└── README.md                  # This file is to help newcomer to understand the project
 ```
 
 - **Modular Page Objects:** Each page object (e.g., `landing-page.ts`) extends a common base for DRY code and maintainability.
 - **Step Definitions:** One instance per scenario, strongly typed, and reusable.
 - **Hooks:** Robust setup/teardown, screenshot/video capture, and artifact management.
 - **Cross-Browser:** Configured for Chromium, Firefox, and WebKit.
-- **Reporting:** Screenshots and videos attached to Cucumber reports; artifacts uploaded in CI.
-- **CI/CD Ready:** GitHub Actions and GitLab templates provided, with artifact handling and headless support.
+- **Reporting:** Screenshots and videos attached to Cucumber reports, artifacts uploaded in CI.
+- **CI/CD Ready:** GitHub Actions provided, with artifact handling and headless support.
 
 ---
 
@@ -53,25 +50,20 @@ This framework combines Playwright and Cucumber with TypeScript for scalable, ma
 npm install
 ```
 
-### 2. Run Playwright demo test (non-Cucumber)
+### 2. Install Playwright browser
 ```sh
-npx playwright test tests-examples/demo-todo-app.spec.ts
+npx playwright install --with-deps chromium
 ```
 
-### 3. Run Cucumber BDD tests
+### 3. Run test
 ```sh
-npx cucumber-js --require-module ts-node/register --require tests/features/**/*.ts --publish-quiet
-```
-
-Or use the script in `package.json` (if present):
-```sh
-npm run test:bdd
+npm test
 ```
 
 ### 4. View Reports & Artifacts
 - **Screenshots:** `reports/screenshots/`
 - **Videos:** `reports/videos/`
-- **Cucumber HTML/JSON reports:** (if configured, see `reports/` or CI artifacts)
+- **Cucumber HTML/JSON reports:** see `reports/` or CI artifacts
 
 ### 5. Cross-Browser Testing
 By default, Playwright runs all browsers. To specify:
@@ -81,7 +73,6 @@ npx playwright test --project=firefox
 
 ### 6. CI/CD
 - **GitHub Actions:** See `.github/workflows/playwright.yml` for matrix runs, artifact upload, and scheduling.
-- **GitLab:** Use similar steps in `.gitlab-ci.yml` (template provided in docs or on request).
 
 ---
 
@@ -90,7 +81,13 @@ npx playwright test --project=firefox
 - Use hooks for all setup/teardown and artifact management.
 - Exclude `reports/` from git (see `.gitignore`).
 - Review CI artifacts for screenshots/videos on failures.
-- For advanced reporting (e.g., Allure), see docs or request integration.
+
+---
+
+## Future Improvements
+- **Apply ESLint:** Add ESLint to enforce code style and catch errors early. Integrate with CI for automatic lint checks.
+- **SonarQube Integration:** Use SonarQube for static code analysis, code quality, and security checks. Add a SonarQube scan step in your CI pipeline.
+- **Test Management Integration:** Integrate with a test management tool (e.g., Azure DevOps Test Plans, Xray, Zephyr) to sync test results automatically. For Azure DevOps, use the official Playwright reporter or a custom script to publish results to Test Plans.
 
 ---
 
