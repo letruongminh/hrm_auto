@@ -7,7 +7,10 @@ Given('I am on the landing page', { timeout: 10000 }, async function () {
 });
 
 When('I fill in the login form with username {string} and password {string}', async function (username: string, password: string) {
-    await new LandingPage(this.page).fillCredentials(username, password);
+    // Use env vars if placeholder values are passed
+    const user: string = username === 'env' ? process.env.USERNAME || '' : username;
+    const pass: string = password === 'env' ? process.env.PASSWORD || '' : password;
+    await new LandingPage(this.page).fillCredentials(user, pass);
 });
 
 When('I hit the login button', async function () {

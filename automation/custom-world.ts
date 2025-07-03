@@ -1,5 +1,7 @@
 import { setWorldConstructor, World } from '@cucumber/cucumber';
 import { Browser, BrowserContext, Page, chromium, firefox, webkit } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export class CustomWorld extends World {
   browser!: Browser;
@@ -21,7 +23,9 @@ export class CustomWorld extends World {
         browserLauncher = chromium;
     }
     this.browser = await browserLauncher.launch({ headless: true });
-    this.context = await this.browser.newContext();
+    this.context = await this.browser.newContext({
+      recordVideo: { dir: 'reports/videos/' },
+    });
     this.page = await this.context.newPage();
   }
 
