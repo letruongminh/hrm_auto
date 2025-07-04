@@ -1,18 +1,31 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: ["**"]
   pull_request:
-    branches: [ main, master ]
+    branches: ["**"]
   schedule:
-    - cron: '0 * * * *' # every 1 hour
+    - cron: '0 */8 * * *' # every 8 hours
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Run ESLint
+        run: npx eslint .
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    needs: lint
     strategy:
       matrix:
         browser: [chromium, firefox, webkit]
+      fail-fast: false
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -22,8 +35,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright with Cucumber tests
-      run: BROWSER=${{ matrix.browser }} npx cucumber-js --config cucumber.js
+    - name: Run Playwright with Cucumber tests (with retry)
+      uses: Wandalen/wretry.action@v3.4.0
+      with:
+        command: BROWSER=${{ matrix.browser }} npx cucumber-js --config cucumber.js
+        attempt_limit: 2
+        attempt_delay: 10s
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

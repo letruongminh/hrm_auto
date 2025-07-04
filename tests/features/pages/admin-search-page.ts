@@ -1,8 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { CommonPage } from "./common-page";
 
-const QA_WEB = process.env.BASE_URL || 'https://opensource-demo.orangehrmlive.com/';
-
 export class AdminSearchPage extends CommonPage {
     protected page: Page;
     protected usernameTextbox: Locator;

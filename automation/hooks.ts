@@ -1,7 +1,6 @@
 import { Before, After, AfterStep } from '@cucumber/cucumber';
 import { CustomWorld } from './custom-world';
 import * as fs from 'fs';
-import path from 'path';
 
 // Utility to ensure a directory exists
 function ensureDir(dir: string) {
@@ -15,13 +14,13 @@ function sanitizeFilename(text: string) {
   return text.replace(/[^a-zA-Z0-9-_]/g, '_').slice(0, 80);
 }
 
-Before(async function (this: CustomWorld) {
+Before({ timeout: 20000 }, async function (this: CustomWorld) {
   ensureDir('reports/screenshots');
   ensureDir('reports/videos');
   await this.init();
 });
 
-AfterStep(async function (this: CustomWorld & { attach?: Function }, step) {
+AfterStep(async function (this: CustomWorld & { attach?: (data: Buffer, mediaType: string) => Promise<void> }, step) {
   if (this.page) {
     ensureDir('reports/screenshots');
     const stepText = step?.pickleStep?.text || 'step';
@@ -33,7 +32,7 @@ AfterStep(async function (this: CustomWorld & { attach?: Function }, step) {
   }
 });
 
-After(async function (this: CustomWorld & { attach?: Function }, scenario) {
+After(async function (this: CustomWorld & { attach?: (data: Buffer, mediaType: string) => Promise<void> }, scenario) {
   if (scenario.result?.status === 'FAILED' && this.page) {
     ensureDir('reports/screenshots');
     const scenarioName = scenario.pickle?.name || 'scenario';

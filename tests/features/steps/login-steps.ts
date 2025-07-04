@@ -1,8 +1,7 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "@playwright/test";
 import { LandingPage } from "../pages/landing-page";
 
-Given('I am on the landing page', { timeout: 10000 }, async function () {
+Given('I am on the landing page', {timeout: 20000}, async function () {
     await new LandingPage(this.page!).openLandingPage();
 });
 
@@ -17,6 +16,20 @@ When('I hit the login button', async function () {
     await new LandingPage(this.page).hitLoginButton();
 });
 
-Then('I should be logged in successfully', { timeout: 10000 }, async function () {
-    await new LandingPage(this.page).verifyDashboardHeadingVisible();
+When('I click on the "Forgot your password?" link', async function () {
+    await new LandingPage(this.page).hitForgotPasswordLink();
 });
+
+Then('I should be logged in successfully', { timeout: 10000 }, async function () {
+    await new LandingPage(this.page).verifyHeadingVisible('Dashboard');
+});
+
+Then('I should be redirected to the {string} screen', { timeout: 10000 }, async function (headingName: string) {
+    const resetPasswordHeading = this.page.getByRole('heading', { name: headingName });
+    await resetPasswordHeading.waitFor({ state: 'visible' });
+    await resetPasswordHeading.isVisible();
+});
+
+Then('Alert error {string} should be displayed on the screen', async function (errorMessage: string) {
+    await new LandingPage(this.page).verifyAlertError(errorMessage);
+})
