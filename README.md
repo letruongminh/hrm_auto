@@ -61,9 +61,13 @@ npm test
 ```
 
 ### 4. View Reports & Artifacts
+From local: 
 - **Screenshots:** `reports/screenshots/`
 - **Videos:** `reports/videos/`
 - **Cucumber HTML/JSON reports:** see `reports/` or CI artifacts
+
+In the pipeline:
+- Go to Actions tab in Github --> Select the workflow run --> Scroll to the Artifacts section
 
 ### 5. Cross-Browser Testing
 By default, Playwright runs all browsers. To specify:
