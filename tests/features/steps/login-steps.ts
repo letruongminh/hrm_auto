@@ -32,4 +32,41 @@ Then('I should be redirected to the {string} screen', { timeout: 10000 }, async 
 
 Then('Alert error {string} should be displayed on the screen', async function (errorMessage: string) {
     await new LandingPage(this.page).verifyAlertError(errorMessage);
-})
+});
+
+Then('Field error {string} should be displayed on the screen', async function (fieldError: string) {
+    let username = this.parameters?.username;
+    let password = this.parameters?.password;
+
+    if (!username || !password) {
+        const example = this.pickleStepArguments?.find?.((a: any) => a && typeof a === 'object' && 'username' in a && 'password' in a);
+        if (example) {
+            username = example.username;
+            password = example.password;
+        }
+    }
+    // If still not found, default to empty string
+    username = username ?? '';
+    password = password ?? '';
+    // Remove single quotes and trim only if wrapped, but preserve single space as blank
+    const cleanUsername = typeof username === 'string' ? username.replace(/^'(.*)'$/, '$1') : '';
+    const cleanPassword = typeof password === 'string' ? password.replace(/^'(.*)'$/, '$1') : '';
+    let expectedCount = 0;
+    if (cleanUsername.trim() === '') expectedCount++;
+    if (cleanPassword.trim() === '') expectedCount++;
+    // Only require at least one error if both fields are blank
+    const errorLocators = this.page.locator(`text=${fieldError}`);
+    const count = await errorLocators.count();
+    if (expectedCount > 1) {
+        if (count < 1) {
+            throw new Error(`Expected at least 1 field error(s), but found ${count}`);
+        }
+    } else {
+        if (count !== expectedCount) {
+            throw new Error(`Expected ${expectedCount} field error(s), but found ${count}`);
+        }
+    }
+    for (let i = 0; i < count; i++) {
+        await errorLocators.nth(i).waitFor({ state: 'visible' });
+    }
+});

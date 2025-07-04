@@ -42,4 +42,14 @@ export class LandingPage extends CommonPage {
         await this.forgotPasswordLink.click();
         await this.page.waitForLoadState('networkidle');
     }
+
+    public async leaveFieldBlank(fieldName: string) {
+        if (fieldName === 'username') {
+            await this.usernameTextbox.fill('');
+        } else if (fieldName === 'password') {
+            await this.passwordTextbox.fill('');
+        } else {
+            throw new Error(`Unknown field: ${fieldName}`);
+        }
+    }
 }
