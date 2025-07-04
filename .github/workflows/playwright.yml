@@ -38,7 +38,6 @@ jobs:
     - name: Run Playwright with Cucumber tests (with retry)
       uses: Wandalen/wretry.action@v3.4.0
       with:
-        action: run
         command: BROWSER=${{ matrix.browser }} npx cucumber-js --config cucumber.js
         attempt_limit: 2
         attempt_delay: 10s
