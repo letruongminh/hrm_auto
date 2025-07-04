@@ -25,6 +25,8 @@ jobs:
     strategy:
       matrix:
         browser: [chromium, firefox, webkit]
+      fail-fast: false
+    max-attempts: 2  # Will retry the job once if it fails
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4

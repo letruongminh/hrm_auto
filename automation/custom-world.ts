@@ -22,7 +22,7 @@ export class CustomWorld extends World {
       default:
         browserLauncher = chromium;
     }
-    this.browser = await browserLauncher.launch({ headless: true });
+    this.browser = await browserLauncher.launch({ headless: false });
     this.context = await this.browser.newContext({
       recordVideo: { dir: 'reports/videos/' },
     });

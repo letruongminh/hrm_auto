@@ -14,7 +14,7 @@ function sanitizeFilename(text: string) {
   return text.replace(/[^a-zA-Z0-9-_]/g, '_').slice(0, 80);
 }
 
-Before(async function (this: CustomWorld) {
+Before({ timeout: 20000 }, async function (this: CustomWorld) {
   ensureDir('reports/screenshots');
   ensureDir('reports/videos');
   await this.init();

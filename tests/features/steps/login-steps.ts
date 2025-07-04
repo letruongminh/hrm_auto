@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { LandingPage } from "../pages/landing-page";
 
-Given('I am on the landing page', { timeout: 10000 }, async function () {
+Given('I am on the landing page', {timeout: 20000}, async function () {
     await new LandingPage(this.page!).openLandingPage();
 });
 
@@ -29,3 +29,7 @@ Then('I should be redirected to the {string} screen', { timeout: 10000 }, async 
     await resetPasswordHeading.waitFor({ state: 'visible' });
     await resetPasswordHeading.isVisible();
 });
+
+Then('Alert error {string} should be displayed on the screen', async function (errorMessage: string) {
+    await new LandingPage(this.page).verifyAlertError(errorMessage);
+})

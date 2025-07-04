@@ -34,4 +34,10 @@ export class CommonPage {
         await menuLocator.click();
         await this.waitForElementVisible(menuLocator)
     }
+
+    public async verifyAlertError(errorMessage: string) {
+        const errorLocator = this.page.getByRole('alert').locator('div').filter({ hasText: errorMessage });
+        await errorLocator.waitFor({ state: 'visible' });
+        await expect(errorLocator).toBeVisible();
+    }
 }
