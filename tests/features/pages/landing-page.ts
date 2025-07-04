@@ -29,7 +29,6 @@ export class LandingPage extends CommonPage {
     }
 
     public async hitLoginButton() {
-        // Wait for either navigation or dashboard heading to appear (robust for SPA and MPA)
         await Promise.race([
             this.page.waitForLoadState('load').catch(() => {}),
             this.page.waitForSelector('text=Dashboard', { timeout: 15000 }).catch(() => {})

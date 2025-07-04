@@ -8,5 +8,7 @@ node_modules/
 /.vscode/
 /reports/screenshots/
 /reports/videos/
+/reports/cucumber-report.html
+/reports/cucumber-report.json
 .eslintrc.json
 cucumber.cjs

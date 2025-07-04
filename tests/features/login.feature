@@ -1,3 +1,4 @@
+@login
 Feature: Login functionality
 
   Scenario Outline: Verify that user is redirected to Dashboard when logging in successfully with correct username and password
@@ -31,7 +32,6 @@ Feature: Login functionality
       | asdfasfqwf       | admin123          |
       | Admin            | wqergthyjrgefwdqs |
 
-  @test
   Scenario Outline: Verify that an error message is shown when leaving field(s) blank
     Given I am on the landing page
     When I fill in the login form with username "<username>" and password "<password>"
