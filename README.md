@@ -91,7 +91,7 @@ npx playwright test --project=firefox
 In the codebase, I've applied simple lint checks to analyze code for potential errors, stylistic issues, or bad practices before the code is run with the following checks:
 - @typescript-eslint/no-unused-vars: Warns about unused variables, but ignores unused arguments if they start with _.
 - @typescript-eslint/explicit-function-return-type: Disabled, so functions don’t need explicitly declared return types.
-- @typescript-eslint/no-explicit-any: Warns if any is used—good for flagging places to improve type safety.
+- @typescript-eslint/no-explicit-any: Warns if any is used, good for flagging places to improve type safety.
 - no-console: Warns when console.log or other console methods are used (not an error, just a warning).
 
 ---
