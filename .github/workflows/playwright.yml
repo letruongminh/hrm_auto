@@ -26,7 +26,6 @@ jobs:
       matrix:
         browser: [chromium, firefox, webkit]
       fail-fast: false
-    max-attempts: 2  # Will retry the job once if it fails
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -36,8 +35,13 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright with Cucumber tests
-      run: BROWSER=${{ matrix.browser }} npx cucumber-js --config cucumber.js
+    - name: Run Playwright with Cucumber tests (with retry)
+      uses: Wandalen/wretry.action@v3.4.0
+      with:
+        action: run
+        command: BROWSER=${{ matrix.browser }} npx cucumber-js --config cucumber.js
+        attempt_limit: 2
+        attempt_delay: 10s
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
