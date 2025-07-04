@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "@playwright/test";
 import { LandingPage } from "../pages/landing-page";
 
 Given('I am on the landing page', { timeout: 10000 }, async function () {
