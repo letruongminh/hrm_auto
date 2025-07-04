@@ -10,3 +10,8 @@ Feature: Login functionality
       | username | password |
       | Admin    | admin123 |
       | admin    | admin123 |
+
+  Scenario: Verify that user is redirected to Reset Password screen when clicking on Forgot your password? link text
+    Given I am on the landing page
+    When I click on the "Forgot your password?" link
+    Then I should be redirected to the "Reset Password" screen

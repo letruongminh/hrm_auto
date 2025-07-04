@@ -16,6 +16,16 @@ When('I hit the login button', async function () {
     await new LandingPage(this.page).hitLoginButton();
 });
 
+When('I click on the "Forgot your password?" link', async function () {
+    await new LandingPage(this.page).hitForgotPasswordLink();
+});
+
 Then('I should be logged in successfully', { timeout: 10000 }, async function () {
-    await new LandingPage(this.page).verifyDashboardHeadingVisible();
+    await new LandingPage(this.page).verifyHeadingVisible('Dashboard');
+});
+
+Then('I should be redirected to the {string} screen', { timeout: 10000 }, async function (headingName: string) {
+    const resetPasswordHeading = this.page.getByRole('heading', { name: headingName });
+    await resetPasswordHeading.waitFor({ state: 'visible' });
+    await resetPasswordHeading.isVisible();
 });

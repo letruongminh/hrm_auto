@@ -15,12 +15,12 @@ export class CommonPage {
         this.adminSearchMenu = this.page.getByRole('link', { name: 'Admin' });
     }
 
-    async waitForElementVisible(locator: Locator, timeout = 10000) {
+    public async waitForElementVisible(locator: Locator, timeout = 10000) {
         await locator.waitFor({ state: 'visible', timeout });
     }
 
-    public async verifyDashboardHeadingVisible() {
-        await this.waitForElementVisible(this.dashboardHeading);
+    public async verifyHeadingVisible(headingName: string) {
+        await this.waitForElementVisible(this.page.getByRole('heading', { name: headingName }));
         await expect(this.dashboardHeading).toBeVisible();
     }
 
